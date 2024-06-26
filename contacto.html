@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Mi Empresa</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Estilo para asegurar que el mapa ocupe todo el espacio disponible */
+        #map {
+            width: 100%;
+            height: 500px;
+            margin: 0;
+            padding: 0;
+            display: block;
+        }
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        .map-container {
+            width: 100%;
+            max-width: 1200px;
+        }
+        header {
+            width: 100%;
+            background-color: #333;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+        header h1 {
+            color: #2cc2d3;
+            text-align: center;
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #22b7dc;
+            text-decoration: none;
+        }
+        nav ul li a.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        main {
+            padding-top: 60px; /* Ajustar según la altura del header */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Jairo Flores SL</h1>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="presupuesto.html">Presupuesto</a></li>
+                <li><a href="contacto.html" class="active">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+ 
+    <main>
+        <div class="map-container">
+            <div id="map"></div>
+        </div>
+
+        <p>Dirección: Calle Falsa 123, Plaza España</p>
+        <p>Teléfono: 123456789</p>
+        <p>Correo electrónico: contacto@miempresa.com</p>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 Mi Empresa</p>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">Instagram</a>
+        </div>
+        <p>Dirección de la empresa</p>
+        <p>Aviso legal</p>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const map = L.map('map').setView([39.46599, -0.38158], 19);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            L.marker([39.46599, -0.38158]).addTo(map)
+                .bindPopup('Aquí está Mi Empresa')
+                .openPopup();
+
+            L.Routing.control({
+                waypoints: [
+                    L.latLng(39.46599, -0.38158),
+                    L.latLng(39.466553, -0.380095)
+                ]
+            }).addTo(map);
+        });
+    </script>
+</body>
+</html>
